@@ -1,11 +1,18 @@
 ﻿@page "/mapEvents"
 @using GoogleMapsComponents
 @using GoogleMapsComponents.Maps
+@using MouseEvent = GoogleMapsComponents.Maps.MouseEvent;
 
 <h1>Map Events</h1>
 
-<GoogleMap  @ref="@_map1" Id="map1" Options="@_mapOptions" OnAfterInit="@(async () => await OnAfterInitAsync())">
-</GoogleMap>
+<MudBreakpointProvider>
+    <MudHidden Breakpoint="Breakpoint.MdAndUp">
+        <GoogleMap Height="400px" @ref="@_map1" Id="map1" Options="@_mapOptions" OnAfterInit="OnAfterInitAsync" />
+    </MudHidden>
+    <MudHidden Breakpoint="Breakpoint.SmAndDown">
+        <GoogleMap Height="800px" @ref="@_map1" Id="map1" Options="@_mapOptions" OnAfterInit="OnAfterInitAsync" />
+    </MudHidden>
+</MudBreakpointProvider>
 
 <button @onclick="AddMarker">Add marker</button>&nbsp;
 <button @onclick="RemoveMarker">Remove marker</button>

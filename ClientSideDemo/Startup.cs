@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+﻿using GoogleMapsComponents.Maps;
+using GoogleMapsComponents;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using System.Threading.Tasks;
+using MudBlazor.Services;
 
 namespace ClientSideDemo
 {
@@ -10,6 +13,11 @@ namespace ClientSideDemo
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
             builder.RootComponents.Add<App>("app");
+
+            builder.Services.AddMudServices();
+
+            builder.Services.AddBlazorGoogleMaps(new MapApiLoadOptions("AIzaSyBdkgvniMdyFPAcTlcZivr8f30iU-kn1T0"));
+
             await builder.Build().RunAsync();
         }
     }
